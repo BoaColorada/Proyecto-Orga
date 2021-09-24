@@ -35,6 +35,10 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="cambioBaseEnteros.h" />
+		<Unit filename="cambioBaseFraccionarios.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="cambioBaseFraccionarios.h" />
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />
 		</Unit>
