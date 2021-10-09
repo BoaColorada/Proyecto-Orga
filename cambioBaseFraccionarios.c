@@ -1,18 +1,8 @@
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
-
-
-#define MAX_DECIMAL_SIZE 15
-#define TEST_MODE 1
-
-/*
-int * cambioBaseFraccionarios(char* resultado,int* sizeResultado , char* numero, int* sizeNumero,int* baseOrigen, int* baseDestino){
-
-
-return 0;
-}*/
-
+#include "representacionNumeroEnBase.h"
 
 //Dada una fracción expresada como un arreglo de enteros "numero" de tamaño "numeroSize" en base "baseOrigen"
 //efectúa el cambio de base de la base "baseOrigen" a la base decimal y lo almacena en "resultado".
@@ -47,6 +37,10 @@ int * deBaseOrigenADecimalFraccionario(float * resultado, int * numero, int * nu
 
     }
 
+    free(count);
+    free(potencia);
+    free(calculoDePotencia);
+
     return 0;
 }
 
@@ -54,13 +48,13 @@ int * deBaseDecimalADestinoFraccionario(int * resultado, int * resultadoSize, fl
 
     //Declaración variables tipo puntero
     int *count;
-    int *parteEnteraOperacion;
+    double *parteEnteraOperacion;
     double *parteFraccionariaOperacion;
     double *resultadoMultiplicacion;
 
     //Inicialización memoria variables
     count = (int*) malloc(sizeof(int));
-    parteEnteraOperacion = (int*) malloc(sizeof(int));
+    parteEnteraOperacion = (double*) malloc(sizeof(double));
     parteFraccionariaOperacion = (double*) malloc(sizeof(double));
     resultadoMultiplicacion = (double*) malloc(sizeof(double));
 
@@ -70,10 +64,12 @@ int * deBaseDecimalADestinoFraccionario(int * resultado, int * resultadoSize, fl
     *resultadoMultiplicacion = 0;
 
     #ifdef TEST_MODE
-        printf("\n parametro resultado: %lf  \n", resultadoMultiplicacion);
-        printf("\n parametro resultadoSize: %lf  \n", parteFraccionariaOperacion);
-        printf("\n parametro numero: %i\n", parteEnteraOperacion);
-        printf("\n parametro baseDestino: %i\n", resultado);
+        printf("PARÁMETROS");
+        printf("\n parametro resultado: %i  \n", *resultado);
+        printf("\n parametro resultadoSize: %i  \n", *resultadoSize);
+        printf("\n parametro numero: %lf\n", *numero);
+        printf("\n parametro baseDestino: %i\n", *baseDestino);
+        printf("////////////////////////");
     #endif // TEST_MODE
 
 
@@ -86,18 +82,67 @@ int * deBaseDecimalADestinoFraccionario(int * resultado, int * resultadoSize, fl
         *resultado = *parteEnteraOperacion;
 
         #ifdef TEST_MODE
-            printf("\nresultadoMultiplicacion: %lf  \n", resultadoMultiplicacion);
-            printf("\nparteFraccionariaOperacion: %lf  \n", parteFraccionariaOperacion);
-            printf("\nparteEnteraOperacion: %i\n", parteEnteraOperacion);
-            printf("\nresultado: %i\n", resultado);
+            printf("\nresultadoMultiplicacion: %lf  \n", *resultadoMultiplicacion);
+            printf("\nparteFraccionariaOperacion: %lf  \n", *parteFraccionariaOperacion);
+            printf("\nparteEnteraOperacion: %lf\n", *parteEnteraOperacion);
+            printf("\nresultado: %i\n", *resultado);
+            printf("////////////////////////");
         #endif // TEST_MODE
 
         resultado++;
-
     }
+
+    free(count);
+    free(parteEnteraOperacion);
+    free(parteFraccionariaOperacion);
+    free(resultadoMultiplicacion);
 
     return 0;
 }
 
+int * cambioBaseFraccionarios(char* resultado,int* sizeResultado , char* numero, int* sizeNumero,int* baseOrigen, int* baseDestino){
 
+    //DECLARACIÓN PUNTEROS
+    int *numeroRepresentadoEnArregloDeEnteros;
+    float *numeroEnBaseDecimal;
+    int *numeroEnBaseDestinoRepresentadoEnDecimal;
+    int *i;
 
+    //INICIALIZACIÓN DE MEMORIA Y VARIABLES CON MALLOC
+    i = (int*) malloc(sizeof(int));
+
+    numeroRepresentadoEnArregloDeEnteros = (int*) malloc(sizeof(int) * (*sizeResultado));
+
+    numeroEnBaseDecimal = (float*) malloc(sizeof(float));
+
+    numeroEnBaseDestinoRepresentadoEnDecimal = (int*) malloc(sizeof(int) * (*sizeResultado));
+
+    //INICIALIZACIÓN DE VARIABLES
+    for(*i = 0; *i<*sizeResultado; (*i)++){
+        *(numeroRepresentadoEnArregloDeEnteros+*i) = 0;
+    }
+
+    *numeroEnBaseDecimal = 0;
+
+    for(*i = 0; *i<*sizeResultado; (*i)++){
+        *(numeroEnBaseDestinoRepresentadoEnDecimal+*i) = 0;
+    }
+
+    //OPERACIONES
+
+    obtenerRepresentacionEnBaseDiez(numeroRepresentadoEnArregloDeEnteros, sizeNumero, numero, sizeNumero);
+
+    deBaseOrigenADecimalFraccionario(numeroEnBaseDecimal, numeroRepresentadoEnArregloDeEnteros, sizeNumero, baseOrigen );
+
+    deBaseDecimalADestinoFraccionario(numeroEnBaseDestinoRepresentadoEnDecimal, sizeResultado, numeroEnBaseDecimal, baseDestino);
+
+    obtenerRepresentacionEnBaseCorrespondiente(resultado, sizeResultado, numeroEnBaseDestinoRepresentadoEnDecimal, sizeResultado);
+
+    //LIBERACIÓN DE MEMORIA
+    free(numeroRepresentadoEnArregloDeEnteros);
+    free(numeroEnBaseDecimal);
+    free(numeroEnBaseDestinoRepresentadoEnDecimal);
+    free(i);
+
+    return 0;
+}

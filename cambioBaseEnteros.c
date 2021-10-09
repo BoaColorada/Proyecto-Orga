@@ -1,146 +1,30 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
-#include "cambioBaseEnteros.h"
+#include "representacionNumeroEnBase.h"
+#define TEST_MODE 1
 
-#define MAX_DECIMAL_SIZE 15
-#define TEST_MODE 0
-
-int * cambioBaseEnteros(char* resultado,int* sizeResultado , char* numero, int* sizeNumero,int* baseOrigen, int* baseDestino){
-
-    #ifdef TEST_MODE
-        printf("\n Parametro resultado Inicial: \n");
-        for(int i=0; i<*sizeResultado; i++){
-            printf("%c ... ", *(resultado+i));
-        }
-        printf("\n");
-
-        printf("\n Parametro sizeResultado Inicial: \n");
-        printf("%i \n", *sizeResultado);
-
-        printf("\n Parametro numero Inicial: \n");
-        for(int i=0; i<*sizeNumero; i++){
-            printf("%c ... ", *(numero+i));
-        }
-        printf("\n");
-
-        printf("\n Parametro sizeNumero Inicial: \n");
-        printf("%i \n", *sizeResultado);
-
-        printf("\n Parametro baseOrigen Inicial: \n");
-        printf("%i \n", *baseOrigen);
-
-        printf("\n Parametro baseDestino Inicial: \n");
-        printf("%i \n", *baseDestino);
-    #endif
-
-    //DECLARACIÓN PUNTEROS
-    int *numeroRepresentadoEnArregloDeEnteros;
-    int *numeroEnBaseDecimal;
-    int *numeroEnBaseDestinoRepresentadoEnDecimal;
-
-    //INICIALIZACIÓN DE MEMORIA Y VARIABLES CON MALLOC
-
-    numeroRepresentadoEnArregloDeEnteros = (int*) malloc(sizeof(int) * (*sizeResultado));
-
-    for(int i = 0; i<*sizeResultado; i++){
-        *(numeroRepresentadoEnArregloDeEnteros+i) = 0;
-    }
-
-    numeroEnBaseDecimal = (int*) malloc(sizeof(int));
-
-    *numeroEnBaseDecimal = 0;
-
-    numeroEnBaseDestinoRepresentadoEnDecimal = (int*) malloc(sizeof(int) * (*sizeResultado));
-
-    for(int i = 0; i<*sizeResultado; i++){
-        *(numeroEnBaseDestinoRepresentadoEnDecimal+i) = 0;
-    }
-
-    //OPERACIONES
-    obtenerRepresentacionEnBaseDiez(numeroRepresentadoEnArregloDeEnteros, sizeResultado, numero, sizeResultado);
-
-    #ifdef TEST_MODE
-        printf("\n -_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_ \n");
-        printf("\n RESULTADO obtenerRepresentacionEnBaseDiez: \n");
-        for(int i=0; i<*sizeResultado; i++){
-            printf("%i ... ", *(numeroRepresentadoEnArregloDeEnteros+i));
-        }
-        printf("\n -_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_ \n");
-        printf("\n");
-    #endif // TEST_MODE
-
-
-
-    deBaseOrigenADecimalEntero(numeroEnBaseDecimal, numeroRepresentadoEnArregloDeEnteros, sizeResultado, baseOrigen);
-
-    #ifdef TEST_MODE
-        printf("\n -_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_ \n");
-        printf("\n RESULTADO deBaseOrigenADecimal: \n");
-        printf("%i ... ", *(numeroEnBaseDecimal));
-        printf("\n -_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_ \n");
-        printf("\n");
-    #endif // TEST_MODE
-
-    deBaseDecimalADestinoEntero(numeroEnBaseDestinoRepresentadoEnDecimal, sizeResultado, baseDestino, numeroEnBaseDecimal);
-
-    #ifdef TEST_MODE
-        printf("\n -_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_ \n");
-        printf("\n RESULTADO deBaseDecimalADestino: \n");
-        for(int i=0; i<*sizeResultado; i++){
-            printf("%i ... ", *(numeroEnBaseDestinoRepresentadoEnDecimal+i));
-        }
-        printf("\n -_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_ \n");
-        printf("\n");
-    #endif // TEST_MODE
-
-    obtenerRepresentacionEnBaseCorrespondiente(resultado, sizeResultado, numeroEnBaseDestinoRepresentadoEnDecimal, sizeResultado);
-
-    #ifdef TEST_MODE
-        printf("\n -_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_ \n");
-        printf("\n RESULTADO obtenerRepresentacionEnBaseCorrespondiente: \n");
-        for(int i=0; i<*sizeResultado; i++){
-            printf("%c ... ", *(resultado+i));
-        }
-        printf("\n -_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_ \n");
-        printf("\n");
-    #endif // TEST_MODE
-
-
-
-    //LIBERACIÓN DE MEMORIA
-    free(numeroRepresentadoEnArregloDeEnteros);
-    free(numeroEnBaseDecimal);
-    free(numeroEnBaseDestinoRepresentadoEnDecimal);
-
-    return 0;
-}
 
 int * deBaseOrigenADecimalEntero(int* resultado, int* numero, int* numeroSize,int* baseOrigen){
 
-    //Declaración variables de tipo elemental
-    int i;
-    int numeroDePotencia;
-    int calcPotencia;
-    int digitoAct;
-
-    //Declaración variables de tipo puntero
+    //DECLARACIÓN PUNTEROS
     int *count;
     int *potencia;
     int *calculoDePotencia;
     int *digitoActual;
 
-    //Inicialización variables de tipo puntero
-    count = &i;
-    potencia = &numeroDePotencia;
-    calculoDePotencia = &calcPotencia;
-    digitoActual = &digitoAct;
+    //ASIGNACIÓN DE MEMORIA DINÁMICA CON MALLOC
+    count = (int *) malloc(sizeof(int));
+    potencia = (int *) malloc(sizeof(int));
+    calculoDePotencia = (int *) malloc(sizeof(int));
+    digitoActual = (int *) malloc(sizeof(int));
 
-    //Inicialización variables de tipo elemental
+    //INICIALIZACIÓN VARIABLES
     *count = (*numeroSize)-1;
     *potencia = 0;
     *calculoDePotencia = 0;
     *digitoActual = 0;
+
     #ifdef TEST_MODE
 
         printf("\n ------------- INICIO METODO deBaseOrigenADecimal ------------- \n");
@@ -164,8 +48,6 @@ int * deBaseOrigenADecimalEntero(int* resultado, int* numero, int* numeroSize,in
         printf("\n");
 
     #endif // TEST_MODE
-
-
 
     //Realiza el cálculo de cambio de base destino a decimal partiendo desde su dígito menos
     //significativo
@@ -211,28 +93,28 @@ int * deBaseOrigenADecimalEntero(int* resultado, int* numero, int* numeroSize,in
         printf("\n ------------- FINAL METODO deBaseOrigenADecimal ------------- \n");
     #endif
 
+    free(count);
+    free(potencia);
+    free(calculoDePotencia);
+    free(digitoActual);
 
     return 0;
 }
 
 
 int * deBaseDecimalADestinoEntero(int* resultado, int* resultadoSize , int* baseDestino, int *numero){
-    //Declaración variables de tipo elemental
-    int coci;
-    int res;
-    int count;
 
-    //Declaración variables de tipo puntero
+    //DECLARACIÓN PUNTEROS
     int *cociente;
     int *resto;
     int *counter;
 
-    //Inicialización variables de tipo puntero
-    cociente = &coci;
-    resto = &res;
-    counter = &count;
+    //ASIGNACIÓN DE MEMORIA DINÁMICA CON MALLOC
+    cociente = (int *) malloc(sizeof(int));
+    resto = (int *) malloc(sizeof(int));
+    counter = (int *) malloc(sizeof(int));
 
-    //Inicialización variables de tipo elemental
+    //INICIALIZACIÓN VARIABLES
     *cociente = *numero;
     *resto = 0;
     *counter = (*resultadoSize) - 1;
@@ -270,7 +152,7 @@ int * deBaseDecimalADestinoEntero(int* resultado, int* resultadoSize , int* base
             printf( "Resto: %i \n" , *resto);
         #endif
 
-        *(resultado + count) = *resto;
+        *(resultado + *counter) = *resto;
 
         #ifdef TEST_MODE
             printf( "Resultado en posicion %i: %i \n" , *counter, *(resultado + *counter));
@@ -297,140 +179,130 @@ int * deBaseDecimalADestinoEntero(int* resultado, int* resultadoSize , int* base
         printf("\n ------------- FINAL METODO deBaseDecimalADestino ------------- \n");
     #endif
 
-    return 0;
+    free(cociente);
+    free(resto);
+    free(counter);
 
+    return 0;
 }
 
-//Dado un arreglo de enteros cambia a su correspondencia alfabética dependiendo del valor de los mismos
-//Para obtener la correcta representación en la base que se requiera
-int * obtenerRepresentacionEnBaseCorrespondiente(char *resultado, int *resultadoSize, int *numero, int *numeroSize){
 
-    //Declaración variables de tipo elemental
-    int count;
-    //Declaración variables de tipo puntero
-    int *counter;
-
-    //Inicialización variables de tipo puntero
-    counter = &count;
+int * cambioBaseEnteros(char* resultado,int* sizeResultado , char* numero, int* sizeNumero,int* baseOrigen, int* baseDestino){
 
     #ifdef TEST_MODE
-        printf("\n ------------- INICIO METODO obtenerRepresentacionEnBaseCorrespondiente ------------- \n");
-
-        printf("\nParametro resultado Inicial: \n");
-        for(int i=0; i<*resultadoSize; i++){
+        printf("\n Parametro resultado Inicial: \n");
+        for(int i=0; i<*sizeResultado; i++){
             printf("%c ... ", *(resultado+i));
         }
-
-        printf("\nParametro resultadoSize Inicial: \n");
-        printf("%i \n", *resultadoSize);
         printf("\n");
 
-        printf("\nParametro numero Inicial: \n");
-        for(int i=0; i<*numeroSize; i++){
-            printf("%i ... ", *(numero+i));
+        printf("\n Parametro sizeResultado Inicial: \n");
+        printf("%i \n", *sizeResultado);
+
+        printf("\n Parametro numero Inicial: \n");
+        for(int i=0; i<*sizeNumero; i++){
+            printf("%c ... ", *(numero+i));
         }
-
-        printf("\nParametro numeroSize Inicial: \n");
-        printf("%i \n", *numeroSize);
         printf("\n");
 
+        printf("\n Parametro sizeNumero Inicial: \n");
+        printf("%i \n", *sizeResultado);
+
+        printf("\n Parametro baseOrigen Inicial: \n");
+        printf("%i \n", *baseOrigen);
+
+        printf("\n Parametro baseDestino Inicial: \n");
+        printf("%i \n", *baseDestino);
     #endif
 
+    //DECLARACIÓN PUNTEROS
+    int *numeroRepresentadoEnArregloDeEnteros;
+    int *numeroEnBaseDecimal;
+    int *numeroEnBaseDestinoRepresentadoEnDecimal;
+    int *i;
 
-    for(*counter = 0; *counter<(*resultadoSize); (*counter)++ ){
+    //INICIALIZACIÓN DE MEMORIA Y VARIABLES CON MALLOC
 
-        if(*numero>9 && *numero<16){
-            *resultado = (*numero + 55);
-        } else if (*numero>=0 && *numero<=9){
-            *resultado = (*numero + 48);
-        }
+    numeroRepresentadoEnArregloDeEnteros = (int*) malloc(sizeof(int) * (*sizeResultado));
 
-        #ifdef TEST_MODE
-            printf( "numero: %i \n" , *numero);
-            printf( "resultado: %c \n" , *resultado);
-            printf( "/////////////// \n");
-        #endif
+    numeroEnBaseDecimal = (int*) malloc(sizeof(int));
 
-        numero++;
-        resultado++;
+    numeroEnBaseDestinoRepresentadoEnDecimal = (int*) malloc(sizeof(int) * (*sizeResultado));
 
+    i = (int*) malloc(sizeof(int));
 
+    //INICIALIZACIÓN DE VARIABLES
+
+    *i = 0;
+
+    for(*i = 0; *i<*sizeResultado; (*i)++){
+        *(numeroRepresentadoEnArregloDeEnteros+*i) = 0;
     }
 
+    *numeroEnBaseDecimal = 0;
+
+    for(*i = 0; *i<*sizeResultado; (*i)++){
+        *(numeroEnBaseDestinoRepresentadoEnDecimal+*i) = 0;
+    }
+
+
+    //OPERACIONES
+    obtenerRepresentacionEnBaseDiez(numeroRepresentadoEnArregloDeEnteros, sizeResultado, numero, sizeResultado);
+
     #ifdef TEST_MODE
-        printf("\n ------------- FINAL METODO obtenerRepresentacionEnBaseCorrespondiente ------------- \n");
+        printf("\n -_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_ \n");
+        printf("\n RESULTADO obtenerRepresentacionEnBaseDiez: \n");
+        for(*i=0; *i<*sizeResultado; (*i)++){
+            printf("%i ... ", *(numeroRepresentadoEnArregloDeEnteros+*i));
+        }
+        printf("\n -_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_ \n");
+        printf("\n");
     #endif // TEST_MODE
 
 
+
+    deBaseOrigenADecimalEntero(numeroEnBaseDecimal, numeroRepresentadoEnArregloDeEnteros, sizeResultado, baseOrigen);
+
+    #ifdef TEST_MODE
+        printf("\n -_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_ \n");
+        printf("\n RESULTADO deBaseOrigenADecimal: \n");
+        printf("%i ... ", *(numeroEnBaseDecimal));
+        printf("\n -_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_ \n");
+        printf("\n");
+    #endif // TEST_MODE
+
+    deBaseDecimalADestinoEntero(numeroEnBaseDestinoRepresentadoEnDecimal, sizeResultado, baseDestino, numeroEnBaseDecimal);
+
+    #ifdef TEST_MODE
+        printf("\n -_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_ \n");
+        printf("\n RESULTADO deBaseDecimalADestino: \n");
+        for(*i=0; *i<*sizeResultado; (*i)++){
+            printf("%i ... ", *(numeroEnBaseDestinoRepresentadoEnDecimal+*i));
+        }
+        printf("\n -_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_ \n");
+        printf("\n");
+    #endif // TEST_MODE
+
+    obtenerRepresentacionEnBaseCorrespondiente(resultado, sizeResultado, numeroEnBaseDestinoRepresentadoEnDecimal, sizeResultado);
+
+    #ifdef TEST_MODE
+        printf("\n -_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_ \n");
+        printf("\n RESULTADO obtenerRepresentacionEnBaseCorrespondiente: \n");
+        for(*i=0; *i<*sizeResultado; (*i)++){
+            printf("%c ... ", *(resultado+*i));
+        }
+        printf("\n -_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_ \n");
+        printf("\n");
+    #endif // TEST_MODE
+
+
+
+    //LIBERACIÓN DE MEMORIA
+    free(i);
+    free(numeroRepresentadoEnArregloDeEnteros);
+    free(numeroEnBaseDecimal);
+    free(numeroEnBaseDestinoRepresentadoEnDecimal);
+
     return 0;
 }
 
-//Dado un arreglo de enteros cambia a su correspondencia alfabética dependiendo del valor de los mismos
-//Para obtener la correcta representación en la base que se requiera
-int * obtenerRepresentacionEnBaseDiez(int *resultado, int *resultadoSize, char * stringAConvertir, int *stringAConvertirSize){
-
-    //Declaración variables de tipo elemental
-    int count;
-
-    //Declaración variables de tipo puntero
-    int *counter;
-
-    //Inicialización variables de tipo puntero
-    counter = &count;
-
-    #ifdef TEST_MODE
-        printf("\n ------------- INICIO METODO obtenerRepresentacionEnBaseDiez ------------- \n");
-
-        printf("\nParametro resultado Inicial: \n");
-        for(int i=0; i<*resultadoSize; i++){
-            printf("%i ... ", *(resultado+i));
-        }
-        printf("\n");
-
-        printf("\nParametro resultadoSize Inicial: \n");
-        printf("%i \n", *resultadoSize);
-        printf("\n");
-
-        printf("\nParametro stringAConvertir Inicial: \n");
-        for(int i=0; i<*resultadoSize; i++){
-            printf("%c ... ", *(stringAConvertir+i));
-        }
-        printf("\n");
-
-        printf("\nParametro stringAConvertirSize Inicial: \n");
-        printf("%i \n", *stringAConvertirSize);
-        printf("\n");
-
-
-    #endif
-
-
-    for(*counter = 0; *counter<*stringAConvertirSize; (*counter)++){
-
-
-
-        if(*stringAConvertir>=65 && *stringAConvertir<=70){
-            *resultado = ((*stringAConvertir) - 55);
-        } else if (*stringAConvertir>=48 && *stringAConvertir<=57){
-            *resultado = ((*stringAConvertir) - 48);
-        }
-
-        #ifdef TEST_MODE
-            printf("count:  %i \n", *counter);
-            printf("stringAConvertir: %c \n", *(stringAConvertir));
-            printf("Resultado: %i \n", *(resultado));
-            printf("////////////////////////////// \n");
-        #endif
-
-    resultado++;
-    stringAConvertir++;
-
-    }
-
-    #ifdef TEST_MODE
-        printf("\n ------------- FINAL METODO obtenerRepresentacionEnBaseDiez ------------- \n");
-    #endif
-
-
-    return 0;
-}

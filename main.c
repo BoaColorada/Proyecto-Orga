@@ -1,10 +1,108 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "cambioBaseEnteros.h"
+#include "cambioBaseFraccionarios.h"
+#include "verificacionParametrosConsola.h"
 
+int main (int argc, char **argv)
 
-int main()
 {
+    #ifdef TEST_MODE
+        int i;
+
+        printf ("Número de argumentos pasados: %d\n",argc);
+
+        for (i= 0; i < argc; i++){
+          printf ("El argumento %d vale: %s\n",i, *(argv+i));
+        }
+    #endif // TEST_MODE
+
+
+
+
+    int * baseOrigen = (int*) malloc(sizeof(int));
+    *baseOrigen = 0;
+
+    int * baseDestino = (int*) malloc(sizeof(int));
+    *baseDestino = 0;
+
+    int * usa_v = (int*) malloc(sizeof(int));
+    *usa_v = 0;
+
+    int * usa_h = (int*) malloc(sizeof(int));
+    *usa_h = 0;
+
+    int * parteEnteraSize = (int*) malloc(sizeof(int));
+    *parteEnteraSize = 10;
+
+    int * parteFraccionariaSize = (int*) malloc(sizeof(int));
+    *parteFraccionariaSize = 5;
+
+    char * parteEntera = (char*) malloc(sizeof(char) * (*parteEnteraSize));
+    for(int i = 0; i<*parteEnteraSize; (i)++){
+        *(parteEntera+i) = '0';
+    }
+
+    char * parteFraccionaria = (char*) malloc(sizeof(char) * (*parteFraccionariaSize));
+    for(int i = 0; i<*parteFraccionariaSize; (i)++){
+        *(parteFraccionaria+i) = '0';
+    }
+
+
+    printf("PREVIO A INICIO verificarParametrosConsola\n");
+
+    verificarParametrosConsola(&argc, argv, parteEntera, parteEnteraSize, parteFraccionaria, parteFraccionariaSize, baseOrigen, baseDestino, usa_v, usa_h);
+
+    printf("a");
+
+    printf("Base origen: %i \n", *baseOrigen);
+
+    printf("Base destino: %i \n", *baseDestino);
+
+    printf("usa -v: %i \n", *usa_v);
+
+    printf("usa -h: %i \n", *usa_h);
+
+    for(int i = 0; i<*parteEnteraSize; i++){
+        printf("%c" ,*(parteEntera+i));
+    }
+
+    printf("\n");
+
+    for(int i = 0; i<*parteFraccionariaSize; i++){
+        printf("%c" ,*(parteFraccionaria+i));
+    }
+
+    printf("\n");
+
+
+    free(baseOrigen);
+    free(baseDestino);
+    free(usa_v);
+    free(usa_h);
+    free(parteEntera);
+    free(parteEnteraSize);
+    free(parteFraccionaria);
+    free(parteFraccionariaSize);
+
+
+    printf("Finalización correcta del proceso");
+
+    return 0;
+}
+
+/*
+    int i;
+
+    printf ("Número de argumentos pasados: %d\n",argc);
+
+    for (i= 0; i < argc; i++){
+      printf ("El argumento %d vale: %s\n",i, argv[i]);
+    }
+*/
+
+
+/*
     int * resultadoSize = (int*) malloc(sizeof(int));
     *resultadoSize = 5;
 
@@ -20,14 +118,6 @@ int main()
         *(resultado+i) = 0;
     }
 
-    /*
-    *(numero+0) = 5;
-    *(numero+1) = 11;
-    *(numero+2) = 8;
-    *(numero+3) = 12;
-    *(numero+4) = 7;
-    */
-
     *numero = 0.5;
 
     deBaseDecimalADestinoFraccionario(resultado, resultadoSize, numero, baseDestino);
@@ -37,11 +127,7 @@ int main()
         printf("%i", *resultado);
     }
 
-
-
-
-    return 0;
-}
+    */
 
 
     /*

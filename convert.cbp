@@ -22,6 +22,7 @@
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-O2" />
+					<Add option="-Wall" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
@@ -42,6 +43,14 @@
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="representacionNumeroEnBase.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="representacionNumeroEnBase.h" />
+		<Unit filename="verificacionParametrosConsola.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="verificacionParametrosConsola.h" />
 		<Extensions>
 			<lib_finder disable_auto="1" />
 		</Extensions>
