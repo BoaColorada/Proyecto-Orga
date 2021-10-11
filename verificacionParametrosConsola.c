@@ -1,12 +1,13 @@
 #include <ctype.h>
 #include <stdlib.h>
+#include <error.h>
+
 #include <stdio.h>
 
 #define MAX_BASE_SIZE 16
 #define MIN_BASE_SIZE 2
 #define MAX_ARG_SIZE 16
 #define DEFAULT_BASE 10
-#define FAILURE -1
 #define TEST_MODE 1
 
 #define PARAM_CANT_ERROR -1
@@ -15,7 +16,6 @@ int * verificarBase(char * base, int * baseEntero){
 
     int * baseTransformada;
     int * cantDigitosBase;
-
 
     baseTransformada = (int*) malloc(sizeof(int));
 
@@ -304,7 +304,7 @@ void separarNumero(char * numero ,char * parteEntera, int * parteEnteraSize , ch
 
     if(*parteEnteraSize < *numeroSizeEntero || *parteFraccionariaSize < *numeroSizeFraccionario){
         printf("Error: el tamaño de los arreglos de salida no es suficiente para el parámetro nu    mero indicado");
-        exit(FAILURE);
+        exit(0);
     }
 
 
@@ -329,11 +329,14 @@ void separarNumero(char * numero ,char * parteEntera, int * parteEnteraSize , ch
 
     for(*i = 0; *i<*numeroSizeFraccionario; (*i)++){
 
-        *(parteFraccionaria + *i) = *(numero + *i);
+        *(parteFraccionaria) = *(numero);
 
         #ifdef TEST_MODE
-                printf("Parte fraccionaria[%i]: %c \n", *i, *(parteFraccionaria + (*parteFraccionariaSize - *i)));
+                printf("Parte fraccionaria[%i]: %c \n", *i, *parteFraccionaria);
         #endif
+
+        parteFraccionaria++;
+        numero++;
     }
 
 
@@ -442,7 +445,7 @@ int verificarParametrosConsola(int * argc, char **argv, char * parteEntera,int *
 
     if((*argc < 3) || (*argc > 9)){
         printf("Cantidad de argumentos no correcta");
-        exit(0);
+        exit(EXIT_FAILURE);
     } else {
 
         for(*i = 1; *i < *cantArgumentos; (*i)++){
@@ -567,8 +570,8 @@ int verificarParametrosConsola(int * argc, char **argv, char * parteEntera,int *
         }
         printf("\n");
 
-        printf("\nParametro parteEnteraSize Final: \n");
-        printf("%i \n", *parteEnteraSize);
+        printf("\nParametro parteFraccionaria Final: \n");
+        printf("%i \n", *parteFraccionaria);
         printf("\n");
 
 
