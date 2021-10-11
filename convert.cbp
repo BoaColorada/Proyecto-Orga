@@ -40,6 +40,10 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="cambioBaseFraccionarios.h" />
+		<Unit filename="help.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="help.h" />
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />
 		</Unit>

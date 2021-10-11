@@ -1,0 +1,51 @@
+# depslib dependency file v1.0
+1633577585 source:c:\users\agust\onedrive\escritorio\uni\2021\segundo cuatrimestre\(odc) organización de computadoras\proyectos\proyecto-orga\cambiobaseenteros.c
+	<stdio.h>
+	<stdlib.h>
+	<math.h>
+	"representacionNumeroEnBase.h"
+
+1633916706 source:c:\users\agust\onedrive\escritorio\uni\2021\segundo cuatrimestre\(odc) organización de computadoras\proyectos\proyecto-orga\main.c
+	<stdio.h>
+	<stdlib.h>
+	<error.h>
+	"cambioBaseEnteros.h"
+	"cambioBaseFraccionarios.h"
+	"verificacionParametrosConsola.h"
+	"help.h"
+
+1631995692 c:\users\agust\onedrive\escritorio\uni\2021\segundo cuatrimestre\(odc) organización de computadoras\proyectos\proyecto-orga\cambiobaseenteros.c
+	<stdio.h>
+	<stdlib.h>
+	<math.h>
+
+1633288920 c:\users\agust\onedrive\escritorio\uni\2021\segundo cuatrimestre\(odc) organización de computadoras\proyectos\proyecto-orga\cambiobaseenteros.h
+
+1633484973 source:c:\users\agust\onedrive\escritorio\uni\2021\segundo cuatrimestre\(odc) organización de computadoras\proyectos\proyecto-orga\cambiobasefraccionarios.c
+	<stdio.h>
+	<stdlib.h>
+	<math.h>
+	"representacionNumeroEnBase.h"
+
+1633288840 c:\users\agust\onedrive\escritorio\uni\2021\segundo cuatrimestre\(odc) organización de computadoras\proyectos\proyecto-orga\cambiobasefraccionarios.h
+
+1633286135 c:\users\agust\onedrive\escritorio\uni\2021\segundo cuatrimestre\(odc) organización de computadoras\proyectos\proyecto-orga\representacionnumeroenbase.h
+
+1633702240 source:c:\users\agust\onedrive\escritorio\uni\2021\segundo cuatrimestre\(odc) organización de computadoras\proyectos\proyecto-orga\representacionnumeroenbase.c
+	<stdio.h>
+	<stdlib.h>
+	<math.h>
+
+1633909099 source:c:\users\agust\onedrive\escritorio\uni\2021\segundo cuatrimestre\(odc) organización de computadoras\proyectos\proyecto-orga\verificacionparametrosconsola.c
+	<ctype.h>
+	<stdlib.h>
+	<stdio.h>
+
+1633722186 c:\users\agust\onedrive\escritorio\uni\2021\segundo cuatrimestre\(odc) organización de computadoras\proyectos\proyecto-orga\verificacionparametrosconsola.h
+
+1633911637 c:\users\agust\onedrive\escritorio\uni\2021\segundo cuatrimestre\(odc) organización de computadoras\proyectos\proyecto-orga\help.h
+
+1633916697 source:c:\users\agust\onedrive\escritorio\uni\2021\segundo cuatrimestre\(odc) organización de computadoras\proyectos\proyecto-orga\help.c
+	<stdio.h>
+	<error.h>
+

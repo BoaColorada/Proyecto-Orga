@@ -1,8 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <error.h>
 #include "cambioBaseEnteros.h"
 #include "cambioBaseFraccionarios.h"
 #include "verificacionParametrosConsola.h"
+#include "help.h"
 
 int main (int argc, char **argv)
 
@@ -10,16 +12,16 @@ int main (int argc, char **argv)
     #ifdef TEST_MODE
         int i;
 
-        printf ("Número de argumentos pasados: %d\n",argc);
+        printf ("NÃºmero de argumentos pasados: %d\n",argc);
 
         for (i= 0; i < argc; i++){
           printf ("El argumento %d vale: %s\n",i, *(argv+i));
         }
     #endif // TEST_MODE
 
+    help();
 
-
-
+    /*
     int * baseOrigen = (int*) malloc(sizeof(int));
     *baseOrigen = 0;
 
@@ -86,15 +88,16 @@ int main (int argc, char **argv)
     free(parteFraccionariaSize);
 
 
-    printf("Finalización correcta del proceso");
-
-    return 0;
+    printf("FinalizaciÃ³n correcta del proceso");
+    */
+    exit(EXIT_SUCCESS);
+    return EXIT_SUCCESS;
 }
 
 /*
     int i;
 
-    printf ("Número de argumentos pasados: %d\n",argc);
+    printf ("NÃºmero de argumentos pasados: %d\n",argc);
 
     for (i= 0; i < argc; i++){
       printf ("El argumento %d vale: %s\n",i, argv[i]);
