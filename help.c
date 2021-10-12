@@ -1,6 +1,7 @@
 #include <stdio.h>
-
-//Muestra la sintaxis y semantica del programa en pantalla.
+/**
+*Muestra la sintaxis y semantica del programa en pantalla.
+*/
 void help(){
 
     printf("\n----------------------------AYUDA DE CONVERT----------------------------\n");
@@ -42,6 +43,4 @@ void help(){
     printf("-Nombre: Guillermo Rodriguez, LU 120921");
 
     printf("\n------------------------------------------------------------------------\n");
-
-    perror("ERROR");
 }

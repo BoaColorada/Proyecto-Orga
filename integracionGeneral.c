@@ -12,8 +12,12 @@
 #define DEC_OUTPUT_SIZE 5
 #define INT_OUTPUT_SIZE 10
 
-//Recibe la informacion pasada por los parametros argv y argc, verifica la correctitud de la sintaxis y semantica para luego
-//realizar las operaciones correspondientes.
+/**
+*Recibe la informacion pasada por los parametros argv y argc, verifica la correctitud de la sintaxis y semantica para luego
+*realizar las operaciones correspondientes.
+*arc : cantidad de parametros recibidos por consola.
+*arv : arreglo de string que contiene los parametros recibidos por consola.
+*/
 void integracionGeneral(int * argc, char * *argv){
 
     //DECLARACIÓN DE VARIABLES
@@ -89,8 +93,6 @@ void integracionGeneral(int * argc, char * *argv){
     }
 
     //OPERACIONES
-
-
 
     verificarParametrosConsola(argc, argv, parteEntera, parteEnteraSize, parteFraccionaria, parteFraccionariaSize, baseOrigen, baseDestino, usa_v, usa_h);
 

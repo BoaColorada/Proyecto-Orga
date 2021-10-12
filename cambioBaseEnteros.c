@@ -3,9 +3,18 @@
 #include <math.h>
 #include "representacionNumeroEnBase.h"
 
-//Dado el numero expresado como arreglo de caracteres, obtiene su representacion en base decimal a traves del
-//metodo de la multiplicacion para numeros enteros.
-int * deBaseOrigenADecimalEntero(int* resultado, char * numero, int* numeroSize,int* baseOrigen, int * usa_v){
+//
+/**
+*Dado el numero expresado como arreglo de caracteres, obtiene su representacion en base decimal a traves del
+*metodo de la multiplicacion para numeros enteros.
+*resultado : entero que almacena el resultado de la funcion.
+*numero : arreglo de caracteres que almacena el numero entero.
+*numeroSize : almacena la longitud del parametro "numero".
+*baseOrigen : Base en la que el parametro "numero" esta representado.
+*usa_V : indica si se debe mostra informacion adicional sobre los computos intermedios de proceso de conversion.
+*/
+//
+void deBaseOrigenADecimalEntero(int* resultado, char * numero, int* numeroSize,int* baseOrigen, int * usa_v){
 
     //DECLARACIÓN PUNTEROS
     int *count;
@@ -94,12 +103,19 @@ int * deBaseOrigenADecimalEntero(int* resultado, char * numero, int* numeroSize,
     free(digitoActual);
     free(digitoActualEnDecimal);
 
-    return 0;
 }
 
-//Dado el numero expresado como un entero, obtiene su representacion en base destino a traves del
-//metodo de la division para numeros enteros.
-int * deBaseDecimalADestinoEntero(char * resultado, int* resultadoSize , int* baseDestino, int *numero, int * usa_v){
+
+/**
+*Dado el numero expresado como un entero, obtiene su representacion en base destino a traves del
+*metodo de la division para numeros enteros.
+*resultado : caracter que almacena el resultado de la funcion.
+*retultadoSize : entero que almacena la longitud del parametro "resultado".
+*baseDestino : base en la que el se representara el parametro "numero" luego de ser procesado.
+*numero : arreglo de caracteres que almacena el numero entero.
+*usa_V : indica si se debe mostra informacion adicional sobre los computos intermedios de proceso de conversion.
+*/
+void deBaseDecimalADestinoEntero(char * resultado, int* resultadoSize , int* baseDestino, int *numero, int * usa_v){
 
     //DECLARACIÓN PUNTEROS
     int *cociente;
@@ -172,13 +188,21 @@ int * deBaseDecimalADestinoEntero(char * resultado, int* resultadoSize , int* ba
     free(cociente);
     free(resto);
     free(counter);
-
-    return 0;
 }
 
-//Dado el numero expresado como arreglo de caracteres en base origen, obtiene su representacion en base destino
-//utilizando la base 10 como paso intermediario.
-int * cambioBaseEnteros(char* resultado,int* sizeResultado , char* numero, int* sizeNumero,int* baseOrigen, int* baseDestino, int * usa_v){
+
+/**
+*Dado el numero expresado como arreglo de caracteres en base origen, obtiene su representacion en base destino
+*utilizando la base 10 como paso intermediario.
+*resultado : caracter que almacena el resultado de la funcion.
+*sizeResultado : entero que almacena la longitud del parametro "resultado".
+*numero : arreglo de caracteres que almacena el numero entero.
+*sizeNumero : almacena la longitud del parametro "numero".
+*baseOrigen : Base en la que el parametro "numero" esta representado
+*baseDestino : base en la que el se representara el parametro "numero" luego de ser procesado.
+*usa_V : indica si se debe mostra informacion adicional sobre los computos intermedios de proceso de conversion.
+*/
+void cambioBaseEnteros(char* resultado,int* sizeResultado , char* numero, int* sizeNumero,int* baseOrigen, int* baseDestino, int * usa_v){
 
     //DECLARACIÓN PUNTEROS
     int * numeroEnBaseDecimal;
@@ -217,7 +241,5 @@ int * cambioBaseEnteros(char* resultado,int* sizeResultado , char* numero, int* 
     //LIBERACIÓN DE MEMORIA
     free(i);
     free(numeroEnBaseDecimal);
-
-    return 0;
 }
 

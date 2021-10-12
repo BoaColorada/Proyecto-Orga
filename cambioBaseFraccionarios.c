@@ -1,12 +1,18 @@
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
 #include "representacionNumeroEnBase.h"
 
-//Dado la mantisa expresada como arreglo de caracteres, obtiene su representacion en base decimal a traves del
-//metodo de la division para numeros fraccionarios.
-int * deBaseOrigenADecimalFraccionario(float * resultado, char * numero, int * numeroSize, int * baseOrigen, int * usa_v ){
+/**
+*Dada la mantisa expresada como arreglo de caracteres, obtiene su representacion en base decimal a traves del
+*metodo de la division para numeros fraccionarios.
+*resultado : numero flotante que almacena el resultado de la funcion.
+*numero :  arreglo de caracteres que almacena la mantisa.
+*numeroSize : almacena la longitud del parametro "numero".
+*baseOrigen : Base en la que el parametro "numero" esta representado.
+*usa_V : indica si se debe mostra informacion adicional sobre los computos intermedios de proceso de conversion.
+*/
+void deBaseOrigenADecimalFraccionario(float * resultado, char * numero, int * numeroSize, int * baseOrigen, int * usa_v ){
 
     //Declaración variables tipo puntero
     int *count;
@@ -81,13 +87,18 @@ int * deBaseOrigenADecimalFraccionario(float * resultado, char * numero, int * n
     free(count);
     free(potencia);
     free(calculoDePotencia);
-
-    return 0;
 }
 
-//Dado la mantisa expresada como un numero flotante en base 10, obtiene su representacion en base destino a traves
-//del metodo de la multiplicacion para numeros fraccionarios.
-int * deBaseDecimalADestinoFraccionario(char * resultado, int * resultadoSize, float * numero, int * baseDestino, int * usa_v){
+/**
+*Dada la mantisa expresada como un numero flotante en base 10, obtiene su representacion en base destino a traves
+*del metodo de la multiplicacion para numeros fraccionarios.
+*resultado : arreglo de caracteres que almacena el resultado de la funcion.
+*resultadoSize : entero que almacena la longitud del parametro "resultado".
+*numero : numero flotante que almacena la mantisa.
+*baseDestino : base en la que el se quiere representar al parametro "numero".
+*usa_V : indica si se debe mostra informacion adicional sobre los computos intermedios de proceso de conversion.
+*/
+void deBaseDecimalADestinoFraccionario(char * resultado, int * resultadoSize, float * numero, int * baseDestino, int * usa_v){
 
     //Declaración variables tipo puntero
     int *count;
@@ -163,14 +174,21 @@ int * deBaseDecimalADestinoFraccionario(char * resultado, int * resultadoSize, f
     free(parteFraccionariaOperacion);
     free(resultadoMultiplicacion);
 
-
-
-    return 0;
 }
 
-//Dado la mantisa expresada como arreglo de caracteres expresada en base origen, obtiene su representacion en
-//base destino utilizando como paso intermedio la base 10.
-int * cambioBaseFraccionarios(char* resultado,int* sizeResultado , char* numero, int* sizeNumero,int* baseOrigen, int* baseDestino, int * usa_v){
+
+/**
+*Dado la mantisa expresada como arreglo de caracteres expresada en base origen, obtiene su representacion en
+*base destino utilizando como paso intermedio la base 10.
+*resultado : arreglo de caracteres que almacena el resultado de la funcion.
+*sizeResultado : entero que almacena la longitud del parametro "resultado".
+*numero : arreglo de caracteres que almacena la mantisa.
+*sizeNumero : almacena la longitud del parametro "numero".
+*baseOrigen : Base en la que el parametro "numero" esta representado.
+*baseDestino : base en la que el se quiere representar al parametro "numero".
+*usa_V : indica si se debe mostra informacion adicional sobre los computos intermedios de proceso de conversion.
+*/
+void cambioBaseFraccionarios(char* resultado,int* sizeResultado , char* numero, int* sizeNumero, int* baseOrigen, int* baseDestino, int * usa_v){
 
     //DECLARACIÓN PUNTEROS
     float *numeroEnBaseDecimal;
@@ -207,6 +225,4 @@ int * cambioBaseFraccionarios(char* resultado,int* sizeResultado , char* numero,
     //LIBERACIÓN DE MEMORIA
     free(numeroEnBaseDecimal);
     free(i);
-
-    return 0;
 }

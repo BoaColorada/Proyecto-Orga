@@ -9,7 +9,12 @@
 #define MAX_ARG_SIZE 16
 #define DEFAULT_BASE 10
 
-int * verificarBase(char * base, int * baseEntero){
+/**
+*Verifica que la correctitud de los parametros pasados por consola para la funcionalidad del programa.
+*base : caracter que representa la base a verificar.
+*baseEntero : entero que almacena la base verificada.
+*/
+void verificarBase(char * base, int * baseEntero){
 
     int * baseTransformada;
     int * cantDigitosBase;
@@ -58,12 +63,14 @@ int * verificarBase(char * base, int * baseEntero){
 
 
     free(baseTransformada);
-
-    return 0;
 }
 
-//Verifica que el numero esté expresado correctamente en la base pasada por parámetros.
-int * verificarNumero(char * numero, int * base){
+/**
+*Verifica que el numero esté expresado correctamente en la base pasada por parámetros.
+*numero : arreglo de caracteres que representa el numero.
+*base : entero que representa la base.
+*/
+void verificarNumero(char * numero, int * base){
 
     //DECLARACION PUNTEROS
     int * puntoEncontrado;
@@ -126,12 +133,19 @@ int * verificarNumero(char * numero, int * base){
     free(asciiLetraMinimo);
     free(asciiLetraMaximo);
 
-
-    return 0;
 }
 
-//Separa un numero "numero" representado como arreglo de caracteres en dos arreglos:
-//"parteEntera" de tamaño "parteEnteraSize", y "parteFraccionaria" de "parteFraccionariaSize"
+//
+//
+/**
+*Separa un numero "numero" representado como arreglo de caracteres en dos arreglos:
+*"parteEntera" de tamaño "parteEnteraSize", y "parteFraccionaria" de "parteFraccionariaSize"
+*numero : arreglo de caracteres que almacena el numero.
+*parteEntera : almacenara la parte entera del parametro "numero" luego de ser procesado este ultimo.
+*parteEnteraSize : almacena el tamaño del parametro "parteEntera"
+*parteFraccionaria : almacenara la parte fraccionaria del parametro "numero" luego de ser procesado este ultimo.
+*parteFraccionariaSize : almacena el tamaño del parametro "parteFraccionaria"
+*/
 void separarNumero(char * numero ,char * parteEntera, int * parteEnteraSize , char * parteFraccionaria, int * parteFraccionariaSize){
 
     //DECLARACION PUNTEROS
@@ -197,9 +211,21 @@ void separarNumero(char * numero ,char * parteEntera, int * parteEnteraSize , ch
     free(numeroSizeFraccionario);
 }
 
-//Verifica los "argc" argumentos contenidos en "argv" y según corresponda, devuelve el numero, su tamaño,
-//la base origen, la base destino, y si utiliza -v y/o -h
-int verificarParametrosConsola(int * argc, char **argv, char * parteEntera,int * parteEnteraSize, char * parteFraccionaria,int * parteFraccionariaSize, int * baseOrigen, int * baseDestino, int * usa_v, int * usa_h){
+/**
+*Verifica los "argc" argumentos contenidos en "argv" y según corresponda, devuelve el numero, su tamaño,
+*la base origen, la base destino, y si utiliza -v y/o -h.
+*arc : cantidad de parametros recibidos por consola.
+*arv : arreglo de string que contiene los parametros recibidos por consola.
+*parteEntera : almacenara la parte entera del parametro "numero" luego de ser procesado este ultimo.
+*parteEnteraSize : almacena el tamaño del parametro "parteEntera"
+*parteFraccionaria : almacenara la parte fraccionaria del parametro "numero" luego de ser procesado este ultimo.
+*parteFraccionariaSize : almacena el tamaño del parametro "parteFraccionaria"
+*baseOrigen : Base en la que el parametro "numero" esta representado.
+*baseDestino : base en la que el se quiere representar al parametro "numero".
+*usa_V : indica si se debe mostra informacion adicional sobre los computos intermedios de proceso de conversion.
+*usa_H : indica si se debe mostrar la sintaxis y semantica del programa en pantalla.
+*/
+void verificarParametrosConsola(int * argc, char **argv, char * parteEntera,int * parteEnteraSize, char * parteFraccionaria,int * parteFraccionariaSize, int * baseOrigen, int * baseDestino, int * usa_v, int * usa_h){
 
     //DECLARACIÓN PUNTEROS
     int * i;
@@ -334,9 +360,6 @@ int verificarParametrosConsola(int * argc, char **argv, char * parteEntera,int *
     free(i);
     free(cantArgumentos);
     free(posicionNumero);
-
-
-    return 0;
 }
 
 
