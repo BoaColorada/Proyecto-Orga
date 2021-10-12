@@ -1,3 +1,2 @@
-
-int * obtenerRepresentacionEnBaseCorrespondiente(char *resultado, int *numero);
-int * obtenerRepresentacionEnBaseDiez(int *resultado, char * caracterAConvertir);
+void obtenerRepresentacionEnBaseCorrespondiente(char *resultado, int *numero);
+void obtenerRepresentacionEnBaseDiez(int *resultado, char * caracterAConvertir);

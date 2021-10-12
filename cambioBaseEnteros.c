@@ -116,7 +116,6 @@ void deBaseOrigenADecimalEntero(int* resultado, char * numero, int* numeroSize,i
 *usa_V : indica si se debe mostra informacion adicional sobre los computos intermedios de proceso de conversion.
 */
 void deBaseDecimalADestinoEntero(char * resultado, int* resultadoSize , int* baseDestino, int *numero, int * usa_v){
-
     //DECLARACIÓN PUNTEROS
     int *cociente;
     int *resto;

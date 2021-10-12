@@ -61,7 +61,7 @@
 	<math.h>
 	"representacionNumeroEnBase.h"
 
-1633965918 c:\users\54293\desktop\universidad\2nd year\segundo cuatrimestre\organizacion de computadoras\workspace\convert\representacionnumeroenbase.h
+1634074723 c:\users\54293\desktop\universidad\2nd year\segundo cuatrimestre\organizacion de computadoras\workspace\convert\representacionnumeroenbase.h
 
 1634064603 source:c:\users\54293\desktop\universidad\2nd year\segundo cuatrimestre\organizacion de computadoras\workspace\convert\cambiobasefraccionarios.c
 	<stdio.h>
@@ -69,7 +69,7 @@
 	<math.h>
 	"representacionNumeroEnBase.h"
 
-1634063291 source:c:\users\54293\desktop\universidad\2nd year\segundo cuatrimestre\organizacion de computadoras\workspace\convert\help.c
+1634065173 source:c:\users\54293\desktop\universidad\2nd year\segundo cuatrimestre\organizacion de computadoras\workspace\convert\help.c
 	<stdio.h>
 
 1634063583 source:c:\users\54293\desktop\universidad\2nd year\segundo cuatrimestre\organizacion de computadoras\workspace\convert\integraciongeneral.c
@@ -80,11 +80,11 @@
 	"verificacionParametrosConsola.h"
 	"help.h"
 
-1633965918 c:\users\54293\desktop\universidad\2nd year\segundo cuatrimestre\organizacion de computadoras\workspace\convert\cambiobaseenteros.h
+1634074742 c:\users\54293\desktop\universidad\2nd year\segundo cuatrimestre\organizacion de computadoras\workspace\convert\cambiobaseenteros.h
 
-1633965918 c:\users\54293\desktop\universidad\2nd year\segundo cuatrimestre\organizacion de computadoras\workspace\convert\cambiobasefraccionarios.h
+1634074753 c:\users\54293\desktop\universidad\2nd year\segundo cuatrimestre\organizacion de computadoras\workspace\convert\cambiobasefraccionarios.h
 
-1633919097 c:\users\54293\desktop\universidad\2nd year\segundo cuatrimestre\organizacion de computadoras\workspace\convert\verificacionparametrosconsola.h
+1634074767 c:\users\54293\desktop\universidad\2nd year\segundo cuatrimestre\organizacion de computadoras\workspace\convert\verificacionparametrosconsola.h
 
 1634058796 c:\users\54293\desktop\universidad\2nd year\segundo cuatrimestre\organizacion de computadoras\workspace\convert\help.h
 
@@ -99,9 +99,14 @@
 	<math.h>
 	<error.h>
 
-1634065012 source:c:\users\54293\desktop\universidad\2nd year\segundo cuatrimestre\organizacion de computadoras\workspace\convert\verificacionparametrosconsola.c
+1634073354 source:c:\users\54293\desktop\universidad\2nd year\segundo cuatrimestre\organizacion de computadoras\workspace\convert\verificacionparametrosconsola.c
 	<ctype.h>
 	<stdlib.h>
 	<error.h>
 	<stdio.h>
+
+1634074689 source:c:\users\54293\desktop\universidad\2nd year\segundo cuatrimestre\organizacion de computadoras\workspace\convert\convert.c
+	<stdio.h>
+	<stdlib.h>
+	<error.h>
 

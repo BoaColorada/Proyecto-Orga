@@ -71,7 +71,6 @@ void verificarBase(char * base, int * baseEntero){
 *base : entero que representa la base.
 */
 void verificarNumero(char * numero, int * base){
-
     //DECLARACION PUNTEROS
     int * puntoEncontrado;
     int * asciiNumericoMaximo;
