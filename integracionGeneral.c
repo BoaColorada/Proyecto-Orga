@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <error.h>
 
 #include "cambioBaseEnteros.h"
 #include "cambioBaseFraccionarios.h"
@@ -13,6 +12,8 @@
 #define DEC_OUTPUT_SIZE 5
 #define INT_OUTPUT_SIZE 10
 
+//Recibe la informacion pasada por los parametros argv y argc, verifica la correctitud de la sintaxis y semantica para luego
+//realizar las operaciones correspondientes.
 void integracionGeneral(int * argc, char * *argv){
 
     //DECLARACIÓN DE VARIABLES
@@ -104,6 +105,7 @@ void integracionGeneral(int * argc, char * *argv){
 
 
         printf("RESULTADO FINAL: ");
+
         for(*i = 0; *i < *resultadoParteEnteraSize; (*i)++){
             printf("%c", *resultadoParteEntera);
             resultadoParteEntera++;
@@ -115,6 +117,8 @@ void integracionGeneral(int * argc, char * *argv){
             printf("%c", *resultadoParteFraccionaria);
             resultadoParteFraccionaria++;
         }
+
+         printf("\n");
 
     }
 
@@ -134,37 +138,4 @@ void integracionGeneral(int * argc, char * *argv){
 
     printf("\n\nFinalización correcta del proceso");
 }
-/*
-int * mostrarResultado(char * parteEntera, int * parteEnteraSize, char * parteEnteraSize, int * parteFraccionariaSize){
 
-    //DECLARACIÓN VARIABLES
-    int * numeroDecEncontrado;
-    int * numeroFracEncontrado;
-    int * i;
-
-    numeroFracEncontrado = (int*) malloc(sizeof(int));
-    numeroDecEncontrado = (int*) malloc(sizeof(int));
-    i = (int*) malloc(sizeof(int));
-
-
-    *numeroDecEncontrado = 0;
-    *numeroFracEncontrado = 0;
-    *i = 0;
-
-    for(*i = 0; *i<*parteEnteraSize; (*i)++){
-        if(parteEntera != 0){
-            *numeroDecEncontrado = 1;
-        }
-        parteEntera++;
-    }
-
-    if(*i == parteEnteraSize){
-        printf("0");
-    }
-
-    for(*i = 0; *i<*parteEnteraSize; (*i)++){
-
-    }
-
-
-}*/

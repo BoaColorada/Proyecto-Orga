@@ -9,8 +9,6 @@
 #define MAX_ARG_SIZE 16
 #define DEFAULT_BASE 10
 
-#define PARAM_CANT_ERROR -1
-
 int * verificarBase(char * base, int * baseEntero){
 
     int * baseTransformada;
@@ -38,7 +36,7 @@ int * verificarBase(char * base, int * baseEntero){
         base++;
     } else {
         printf("Base fuera de limites");
-        exit(0);
+        exit(EXIT_FAILURE);
     }
 
     if(*cantDigitosBase == 2 ){
@@ -46,7 +44,7 @@ int * verificarBase(char * base, int * baseEntero){
             *baseTransformada = (*baseTransformada) * 10 + ((*base) - 48);
         } else {
             printf("Base fuera de limites");
-            exit(0);
+            exit(EXIT_FAILURE);
         }
     }
 
@@ -55,7 +53,7 @@ int * verificarBase(char * base, int * baseEntero){
         *baseEntero = *baseTransformada;
     } else {
         printf("Base fuera de límites");
-        exit(0);
+        exit(EXIT_FAILURE);
     }
 
 
@@ -105,7 +103,7 @@ int * verificarNumero(char * numero, int * base){
 
         if(*puntoEncontrado && *numero == 46){
             printf("Error: Argumento -n contiene más de un punto");
-            exit(0);
+            exit(EXIT_FAILURE);
         }
         if(*numero == 46){
             *puntoEncontrado = 1;
@@ -114,11 +112,11 @@ int * verificarNumero(char * numero, int * base){
         if((*asciiLetraMaximo != -1) && (*asciiLetraMinimo != -1)){
             if( (*numero < 48 || *numero > *asciiNumericoMaximo) && (*numero < *asciiLetraMinimo || *numero > *asciiLetraMaximo) && *numero != 46)   {
                 printf("Error: Argumento -n contiene caracteres que no son propios de la base origen.");
-                exit(0);
+                exit(EXIT_FAILURE);
             }
         } else if ( (*numero < 48 || *numero > *asciiNumericoMaximo) && *numero != 46 ){
             printf("Error: Argumento -n contiene caracteres que no son propios de la base origen.");
-            exit(0);
+            exit(EXIT_FAILURE);
         }
         numero++;
     }
@@ -172,7 +170,7 @@ void separarNumero(char * numero ,char * parteEntera, int * parteEnteraSize , ch
 
     if(*parteEnteraSize < *numeroSizeEntero || *parteFraccionariaSize < *numeroSizeFraccionario){
         printf("Error: el tamaño de los arreglos de salida no es suficiente para el parámetro nu    mero indicado");
-        exit(0);
+        exit(EXIT_FAILURE);
     }
 
 
@@ -193,12 +191,10 @@ void separarNumero(char * numero ,char * parteEntera, int * parteEnteraSize , ch
     }
 
 
-    /*
+    free(i);
+    free(posicionPunto);
     free(numeroSizeEntero);
     free(numeroSizeFraccionario);
-    free(posicionPunto);
-    free(i);
-    */
 }
 
 //Verifica los "argc" argumentos contenidos en "argv" y según corresponda, devuelve el numero, su tamaño,
@@ -218,15 +214,10 @@ int verificarParametrosConsola(int * argc, char **argv, char * parteEntera,int *
 
     posicionNumero = (char*) malloc(sizeof(char));
 
-    caracterActual = (char*) malloc(sizeof(char));
-
-
     //INICIALIZACIÓN VARIABLES
     *i = 0;
 
     *cantArgumentos = *argc;
-
-    *caracterActual = 'Z';
 
     *posicionNumero = 'Z';
 
@@ -259,7 +250,7 @@ int verificarParametrosConsola(int * argc, char **argv, char * parteEntera,int *
                         //Si -n está seguido de algún otro caracter, error
                         if(*caracterActual != '\0'){
                             printf("Parámetros incorrectos");
-                            exit(0);
+                            exit(EXIT_FAILURE);
                         }
 
                         //Salteamos el numero en argv
@@ -276,7 +267,7 @@ int verificarParametrosConsola(int * argc, char **argv, char * parteEntera,int *
                         //Si -s está seguido de algún otro caracter, error
                         if(*caracterActual != '\0'){
                             printf("Parámetros incorrectos");
-                            exit(0);
+                            exit(EXIT_FAILURE);
                         }
 
                         //Salteamos el valor de la base
@@ -292,7 +283,7 @@ int verificarParametrosConsola(int * argc, char **argv, char * parteEntera,int *
                         //Si -n está seguido de algún otro caracter, error
                         if(*caracterActual != '\0'){
                             printf("Parámetros incorrectos");
-                            exit(0);
+                            exit(EXIT_FAILURE);
                         }
 
                         //Salteamos el valor de la base
@@ -307,7 +298,7 @@ int verificarParametrosConsola(int * argc, char **argv, char * parteEntera,int *
                         //Si -v está seguido de algún otro caracter, error
                         if(*caracterActual != '\0'){
                             printf("Parámetros incorrectos");
-                            exit(0);
+                            exit(EXIT_FAILURE);
                         }
 
                         *usa_v = 1;
@@ -319,7 +310,7 @@ int verificarParametrosConsola(int * argc, char **argv, char * parteEntera,int *
                         //Si -h está seguido de algún otro caracter, error
                         if(*caracterActual != '\0'){
                             printf("Parámetros incorrectos");
-                            exit(0);
+                            exit(EXIT_FAILURE);
                         }
 
                         *usa_h = 1;
@@ -329,14 +320,12 @@ int verificarParametrosConsola(int * argc, char **argv, char * parteEntera,int *
 
                 } else {
                     printf("Error: argumentos incorrectos");
-                    exit(0);
+                    exit(EXIT_FAILURE);
                 }
 
             }
 
         }
-
-
 
         verificarNumero(posicionNumero, baseOrigen);
         separarNumero(posicionNumero , parteEntera, parteEnteraSize , parteFraccionaria,parteFraccionariaSize);
@@ -344,8 +333,7 @@ int verificarParametrosConsola(int * argc, char **argv, char * parteEntera,int *
 
     free(i);
     free(cantArgumentos);
-    //free(caracterActual);
-    //free(posicionNumero);
+    free(posicionNumero);
 
 
     return 0;

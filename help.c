@@ -1,6 +1,6 @@
 #include <stdio.h>
-#include <error.h>
 
+//Muestra la sintaxis y semantica del programa en pantalla.
 void help(){
 
     printf("\n----------------------------AYUDA DE CONVERT----------------------------\n");

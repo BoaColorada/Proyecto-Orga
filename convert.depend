@@ -55,3 +55,53 @@
 	"verificacionParametrosConsola.h"
 	"help.h"
 
+1634059385 source:c:\users\54293\desktop\universidad\2nd year\segundo cuatrimestre\organizacion de computadoras\workspace\convert\cambiobaseenteros.c
+	<stdio.h>
+	<stdlib.h>
+	<math.h>
+	"representacionNumeroEnBase.h"
+
+1633965918 c:\users\54293\desktop\universidad\2nd year\segundo cuatrimestre\organizacion de computadoras\workspace\convert\representacionnumeroenbase.h
+
+1634059486 source:c:\users\54293\desktop\universidad\2nd year\segundo cuatrimestre\organizacion de computadoras\workspace\convert\cambiobasefraccionarios.c
+	<stdio.h>
+	<stdlib.h>
+	<math.h>
+	"representacionNumeroEnBase.h"
+
+1634059982 source:c:\users\54293\desktop\universidad\2nd year\segundo cuatrimestre\organizacion de computadoras\workspace\convert\help.c
+	<stdio.h>
+
+1634060284 source:c:\users\54293\desktop\universidad\2nd year\segundo cuatrimestre\organizacion de computadoras\workspace\convert\integraciongeneral.c
+	<stdio.h>
+	<stdlib.h>
+	"cambioBaseEnteros.h"
+	"cambioBaseFraccionarios.h"
+	"verificacionParametrosConsola.h"
+	"help.h"
+
+1633965918 c:\users\54293\desktop\universidad\2nd year\segundo cuatrimestre\organizacion de computadoras\workspace\convert\cambiobaseenteros.h
+
+1633965918 c:\users\54293\desktop\universidad\2nd year\segundo cuatrimestre\organizacion de computadoras\workspace\convert\cambiobasefraccionarios.h
+
+1633919097 c:\users\54293\desktop\universidad\2nd year\segundo cuatrimestre\organizacion de computadoras\workspace\convert\verificacionparametrosconsola.h
+
+1634058796 c:\users\54293\desktop\universidad\2nd year\segundo cuatrimestre\organizacion de computadoras\workspace\convert\help.h
+
+1634059769 source:c:\users\54293\desktop\universidad\2nd year\segundo cuatrimestre\organizacion de computadoras\workspace\convert\main.c
+	<stdio.h>
+	<stdlib.h>
+	<error.h>
+
+1634059912 source:c:\users\54293\desktop\universidad\2nd year\segundo cuatrimestre\organizacion de computadoras\workspace\convert\representacionnumeroenbase.c
+	<stdio.h>
+	<stdlib.h>
+	<math.h>
+	<error.h>
+
+1634060487 source:c:\users\54293\desktop\universidad\2nd year\segundo cuatrimestre\organizacion de computadoras\workspace\convert\verificacionparametrosconsola.c
+	<ctype.h>
+	<stdlib.h>
+	<error.h>
+	<stdio.h>
+

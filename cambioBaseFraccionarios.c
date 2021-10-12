@@ -4,8 +4,8 @@
 #include <math.h>
 #include "representacionNumeroEnBase.h"
 
-//Dada una fracción expresada como un arreglo de enteros "numero" de tamaño "numeroSize" en base "baseOrigen"
-//efectúa el cambio de base de la base "baseOrigen" a la base decimal y lo almacena en "resultado".
+//Dado la mantisa expresada como arreglo de caracteres, obtiene su representacion en base decimal a traves del
+//metodo de la division para numeros fraccionarios.
 int * deBaseOrigenADecimalFraccionario(float * resultado, char * numero, int * numeroSize, int * baseOrigen, int * usa_v ){
 
     //Declaración variables tipo puntero
@@ -85,6 +85,8 @@ int * deBaseOrigenADecimalFraccionario(float * resultado, char * numero, int * n
     return 0;
 }
 
+//Dado la mantisa expresada como un numero flotante en base 10, obtiene su representacion en base destino a traves
+//del metodo de la multiplicacion para numeros fraccionarios.
 int * deBaseDecimalADestinoFraccionario(char * resultado, int * resultadoSize, float * numero, int * baseDestino, int * usa_v){
 
     //Declaración variables tipo puntero
@@ -106,15 +108,6 @@ int * deBaseDecimalADestinoFraccionario(char * resultado, int * resultadoSize, f
     *parteFraccionariaOperacion = *numero;
     *resultadoMultiplicacion = 0;
     *parteEnteraOperacionAux = 0;
-    #ifdef TEST_MODE
-        printf("PARÁMETROS");
-        printf("\n parametro resultado: %i  \n", *resultado);
-        printf("\n parametro resultadoSize: %i  \n", *resultadoSize);
-        printf("\n parametro numero: %lf\n", *numero);
-        printf("\n parametro baseDestino: %i\n", *baseDestino);
-        printf("////////////////////////");
-    #endif // TEST_MODE
-
 
      if(*usa_v){
         printf("\n-.-.-.-.-.-.-.-Metodo de la multiplicacion para numeros fraccionarios-.-.-.-.-.-.-.-\n");
@@ -175,6 +168,8 @@ int * deBaseDecimalADestinoFraccionario(char * resultado, int * resultadoSize, f
     return 0;
 }
 
+//Dado la mantisa expresada como arreglo de caracteres expresada en base origen, obtiene su representacion en
+//base destino utilizando como paso intermedio la base 10.
 int * cambioBaseFraccionarios(char* resultado,int* sizeResultado , char* numero, int* sizeNumero,int* baseOrigen, int* baseDestino, int * usa_v){
 
     //DECLARACIÓN PUNTEROS

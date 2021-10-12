@@ -3,6 +3,8 @@
 #include <math.h>
 #include "representacionNumeroEnBase.h"
 
+//Dado el numero expresado como arreglo de caracteres, obtiene su representacion en base decimal a traves del
+//metodo de la multiplicacion para numeros enteros.
 int * deBaseOrigenADecimalEntero(int* resultado, char * numero, int* numeroSize,int* baseOrigen, int * usa_v){
 
     //DECLARACIÓN PUNTEROS
@@ -95,7 +97,8 @@ int * deBaseOrigenADecimalEntero(int* resultado, char * numero, int* numeroSize,
     return 0;
 }
 
-
+//Dado el numero expresado como un entero, obtiene su representacion en base destino a traves del
+//metodo de la division para numeros enteros.
 int * deBaseDecimalADestinoEntero(char * resultado, int* resultadoSize , int* baseDestino, int *numero, int * usa_v){
 
     //DECLARACIÓN PUNTEROS
@@ -173,34 +176,9 @@ int * deBaseDecimalADestinoEntero(char * resultado, int* resultadoSize , int* ba
     return 0;
 }
 
-
+//Dado el numero expresado como arreglo de caracteres en base origen, obtiene su representacion en base destino
+//utilizando la base 10 como paso intermediario.
 int * cambioBaseEnteros(char* resultado,int* sizeResultado , char* numero, int* sizeNumero,int* baseOrigen, int* baseDestino, int * usa_v){
-
-    #ifdef TEST_MODE
-        printf("\n Parametro resultado Inicial: \n");
-        for(int i=0; i<*sizeResultado; i++){
-            printf("%c ... ", *(resultado+i));
-        }
-        printf("\n");
-
-        printf("\n Parametro sizeResultado Inicial: \n");
-        printf("%i \n", *sizeResultado);
-
-        printf("\n Parametro numero Inicial: \n");
-        for(int i=0; i<*sizeNumero; i++){
-            printf("%c ... ", *(numero+i));
-        }
-        printf("\n");
-
-        printf("\n Parametro sizeNumero Inicial: \n");
-        printf("%i \n", *sizeNumero);
-
-        printf("\n Parametro baseOrigen Inicial: \n");
-        printf("%i \n", *baseOrigen);
-
-        printf("\n Parametro baseDestino Inicial: \n");
-        printf("%i \n", *baseDestino);
-    #endif
 
     //DECLARACIÓN PUNTEROS
     int * numeroEnBaseDecimal;
@@ -234,27 +212,7 @@ int * cambioBaseEnteros(char* resultado,int* sizeResultado , char* numero, int* 
 
     deBaseOrigenADecimalEntero(numeroEnBaseDecimal, numero, sizeNumero, baseOrigen, usa_v);
 
-    #ifdef TEST_MODE
-        printf("\n -_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_ \n");
-        printf("\n RESULTADO deBaseOrigenADecimal: \n");
-        printf("%i ... ", *(numeroEnBaseDecimal));
-        printf("\n -_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_ \n");
-        printf("\n");
-    #endif // TEST_MODE
-
     deBaseDecimalADestinoEntero(resultado, sizeResultado, baseDestino, numeroEnBaseDecimal, usa_v);
-
-
-    #ifdef TEST_MODE
-        printf("\n -_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_ \n");
-        printf("\n RESULTADO deBaseDecimalADestino: \n");
-        for(*i=0; *i<*sizeResultado; (*i)++){
-            printf("%c ... ", *(resultado+*i));
-        }
-        printf("\n -_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_ \n");
-        printf("\n");
-    #endif // TEST_MODE
-
 
     //LIBERACIÓN DE MEMORIA
     free(i);

@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
+#include <error.h>
 
 //Dado un entero cambia a su correspondencia alfabética dependiendo del valor del mismo
 //Para obtener la correcta representación en la base que se requiera
@@ -24,7 +25,7 @@ int * obtenerRepresentacionEnBaseDiez(int *resultado, char * caracterAConvertir)
             *resultado = ((*caracterAConvertir) - 48);
         } else {
             printf("Error: el parametro -n tiene caracteres que no pertenecen a la base.");
-            exit(0);
+            exit(EXIT_FAILURE);
         }
 
     return 0;
