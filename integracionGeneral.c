@@ -10,8 +10,8 @@
 #define DEFAULT_BASE 10
 #define DEC_SIZE 5
 #define INT_SIZE 10
-#define DEC_OUTPUT_SIZE 10
-#define INT_OUTPUT_SIZE 20
+#define DEC_OUTPUT_SIZE 5
+#define INT_OUTPUT_SIZE 10
 
 void integracionGeneral(int * argc, char * *argv){
 
@@ -89,53 +89,34 @@ void integracionGeneral(int * argc, char * *argv){
 
     //OPERACIONES
 
-    #ifdef TEST_MODE
-        printf("PREVIO A INICIO verificarParametrosConsola\n");
-    #endif // TEST_MODE
+
 
     verificarParametrosConsola(argc, argv, parteEntera, parteEnteraSize, parteFraccionaria, parteFraccionariaSize, baseOrigen, baseDestino, usa_v, usa_h);
 
-    #ifdef TEST_MODE
 
-        printf("Base origen: %i \n", *baseOrigen);
+    if(*usa_h){
+        help();
+    } else {
 
-        printf("Base destino: %i \n", *baseDestino);
+        cambioBaseEnteros(resultadoParteEntera, resultadoParteEnteraSize, parteEntera, parteEnteraSize, baseOrigen, baseDestino, usa_v);
 
-        printf("usa -v: %i \n", *usa_v);
+        cambioBaseFraccionarios(resultadoParteFraccionaria, resultadoParteFraccionariaSize, parteFraccionaria, parteFraccionariaSize, baseOrigen, baseDestino, usa_v);
 
-        printf("usa -h: %i \n", *usa_h);
 
-        for(int i = 0; i<*parteEnteraSize; i++){
-            printf("%c" ,*(parteEntera+i));
+        printf("RESULTADO FINAL: ");
+        for(*i = 0; *i < *resultadoParteEnteraSize; (*i)++){
+            printf("%c", *resultadoParteEntera);
+            resultadoParteEntera++;
         }
 
-        printf("\n");
+        printf(".");
 
-        for(int i = 0; i<*parteFraccionariaSize; i++){
-            printf("%c" ,*(parteFraccionaria+i));
+        for(*i = 0; *i < *resultadoParteFraccionariaSize; (*i)++){
+            printf("%c", *resultadoParteFraccionaria);
+            resultadoParteFraccionaria++;
         }
 
-        printf("\n");
-    #endif
-
-    cambioBaseEnteros(resultadoParteEntera, resultadoParteEnteraSize, parteEntera, parteEnteraSize, baseOrigen, baseDestino, usa_v);
-
-    cambioBaseFraccionarios(resultadoParteFraccionaria, resultadoParteFraccionariaSize, parteFraccionaria, parteFraccionariaSize, baseOrigen, baseDestino, usa_v);
-
-    printf("RESULTADO: ");
-    for(*i = 0; *i < *resultadoParteEnteraSize; (*i)++){
-        printf("%c", *resultadoParteEntera);
-        resultadoParteEntera++;
     }
-
-    printf(".");
-
-    for(*i = 0; *i < *resultadoParteFraccionariaSize; (*i)++){
-        printf("%c", *resultadoParteFraccionaria);
-        resultadoParteFraccionaria++;
-    }
-
-
 
     free(i);
     free(usa_v);

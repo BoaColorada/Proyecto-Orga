@@ -23,23 +23,23 @@ void help(){
     printf("-s <source_base>:\n");
 
 
-    printf("    Parámetro opcional que indica la base de origen del numero ingresado, \n");
+    printf("    Parametro opcional que indica la base de origen del numero ingresado, \n");
     printf("    en caso de que no se especifique, se asume que el número está en base 10.\n");
     printf("    La mínima base origen posible es 2, y la máxima es 16.\n");
 
     printf("-d <dest_base>:\n");
-    printf("    Parámetro opcional que indica la base destino para convertir el numero ingresado,\n");
+    printf("    Parametro opcional que indica la base destino para convertir el numero ingresado,\n");
     printf("    en caso de que no se especifique, se asume que el número se convertirá a\n");
     printf("    base 10. La mínima base destino posible es 2, y la máxima es 16.\n");
 
     printf("-v:\n");
-    printf("    Parámetro opcional. En caso de que se llame al programa con este parámetro,\n");
+    printf("    Parametro opcional. En caso de que se llame al programa con este parámetro,\n");
     printf("    se mostrará por pantalla los pasos intermedios que se utilizan para\n");
     printf("    efectuar el cambio de base\n");
 
     printf("\n Autores: \n");
-    printf("-Nombre: Agustín Cuello, LU 130678:\n");
-    printf("-Nombre: Guillermo Rodriguez, LU ------");
+    printf("-Nombre: Agustin Cuello, LU 130678\n");
+    printf("-Nombre: Guillermo Rodriguez, LU 120921");
 
     printf("\n------------------------------------------------------------------------\n");
 

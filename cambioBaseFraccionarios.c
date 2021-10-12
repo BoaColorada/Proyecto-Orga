@@ -3,7 +3,6 @@
 #include <stdlib.h>
 #include <math.h>
 #include "representacionNumeroEnBase.h"
-#define TEST_MODE
 
 //Dada una fracción expresada como un arreglo de enteros "numero" de tamaño "numeroSize" en base "baseOrigen"
 //efectúa el cambio de base de la base "baseOrigen" a la base decimal y lo almacena en "resultado".
@@ -30,17 +29,52 @@ int * deBaseOrigenADecimalFraccionario(float * resultado, char * numero, int * n
     *calculoDePotencia = 0;
     *caracterEnDecimal = 0;
 
+    if(*usa_v){
+        printf("\n-.-.-.-.-.-.-.-Metodo de la division para numeros fraccionarios-.-.-.-.-.-.-.-\n");
+        printf(" En el metodo de la division  para numeros fraccionarios, cada digito de el numero\n");
+        printf(" en base origen, es dividido por la base origen elevada a la posicion del digito \n");
+        printf(" en el numero, para luego sumar todos estos resultados parciales.\n");
+        printf(" Se opera en la base destino\n");
+        printf("-.-.-.-.-.-.-.--.-.-.-.-.-.-.--.-.-.-.-.-.-.--.-.-.-.-.-.-.--.-.-.-.-.-.-.-.-.-\n");
+    }
+
     for(*count = 0; *count < *numeroSize; (*count)++){
 
         obtenerRepresentacionEnBaseDiez(caracterEnDecimal, numero);
 
         *calculoDePotencia = pow(*baseOrigen, *potencia);
 
+        if(*usa_v){
+            printf("\n-------------------------------------------------------------------------\n");
+            printf(" Digito actual: %c\n", *numero);
+            printf(" El digito actual en base 10 es: %i \n", *caracterEnDecimal);
+            printf(" Potenciamos la base origen \"%i\" a la posicion del numero \"%i\".\n", *baseOrigen, *potencia);
+            printf(" lo que resulta: %lf\n", *calculoDePotencia);
+            printf(" Ahora, se divide el digito en base 10 %i por el resultado del calculo\n", *caracterEnDecimal);
+            printf(" anterior, que da como resultado %lf\n", (*calculoDePotencia) * (*caracterEnDecimal));
+            printf(" Y finalmente, sumamos este resultado parcial al resultado final");
+            printf(" %lf + %lf = ", *resultado, (*calculoDePotencia) * (*caracterEnDecimal));
+        }
+
         *resultado = *resultado + (*calculoDePotencia) * (*caracterEnDecimal);
+
+        if(*usa_v){
+            printf("%lf\n", *resultado);
+        }
 
         (*potencia)--;
 
         numero++;
+
+    }
+
+    if(*usa_v){
+        printf("\n-------------------------------------------------------------------------\n");
+
+        printf("Resultado final: %lf", *resultado);
+
+        printf("\n-.-.-.-.-.-.-.-Fin metodo de la division para numeros fraccionarios-.-.-.-.-.-.-.-\n\n\n");
+
 
     }
 
@@ -82,7 +116,23 @@ int * deBaseDecimalADestinoFraccionario(char * resultado, int * resultadoSize, f
     #endif // TEST_MODE
 
 
+     if(*usa_v){
+        printf("\n-.-.-.-.-.-.-.-Metodo de la multiplicacion para numeros fraccionarios-.-.-.-.-.-.-.-\n");
+        printf(" En el metodo de la multiplicacion para numeros fraccionarios, multiplicamos el numero por\n");
+        printf(" la base destino, y luego separamos la parte entera de la fraccionaria. La parte entera del\n");
+        printf(" resultado de esta operacion sera añadida a la derecha extrema del resultado total.\n");
+        printf(" mientras que la parte fraccionaria se utilizara en la siguiente iteracion del algorimo\n");
+        printf(" Se opera en la base origen.\n");
+        printf("-.-.-.-.-.-.-.--.-.-.-.-.-.-.--.-.-.-.-.-.-.--.-.-.-.-.-.-.--.-.-.-.-.-.-.-.-.-\n");
+    }
+
+
     for(*count = 0; *count < *resultadoSize; (*count)++ ){
+
+         if(*usa_v){
+            printf("\n-------------------------------------------------------------------------\n");
+            printf(" numero a multiplicar: %lf\n", *parteFraccionariaOperacion);
+         }
 
         *resultadoMultiplicacion = (*parteFraccionariaOperacion) * (*baseDestino);
 
@@ -92,24 +142,34 @@ int * deBaseDecimalADestinoFraccionario(char * resultado, int * resultadoSize, f
 
         obtenerRepresentacionEnBaseCorrespondiente(resultado, parteEnteraOperacionAux);
 
-        #ifdef TEST_MODE
-            printf("\nresultadoMultiplicacion: %lf  \n", *resultadoMultiplicacion);
-            printf("\nparteFraccionariaOperacion: %lf  \n", *parteFraccionariaOperacion);
-            printf("\nparteEnteraOperacion: %lf\n", *parteEnteraOperacion);
-            printf("\nparteEnteraOperacionAux: %i\n", *parteEnteraOperacionAux);
-            printf("\nresultado: %i\n", *resultado);
-            printf("////////////////////////");
-        #endif // TEST_MODE
+        if(*usa_v){
+            printf(" base destino: %i\n", *baseDestino);
+            printf(" Multiplicamos la base destino por el numero, resulta: %lf\n", *resultadoMultiplicacion);
+            printf(" Separamos la parte entera de la fraccionaria, y concluye como:\n");
+            printf(" Parte entera: %i \n", *parteEnteraOperacionAux);
+            printf(" Parte fraccionaria: %lf\n", *parteFraccionariaOperacion);
+            printf(" Pasamos la parte entera a la base destino: %c\n", *resultado);
+            printf(" y la añadimos a la derecha extrema del resultado.");
+        }
 
         resultado++;
     }
 
+
+    if(*usa_v){
+        printf("\n-------------------------------------------------------------------------\n");
+
+        printf("Resultado final: %i", *resultado);
+
+        printf("\n-.-.-.-.-.-.-.-Fin metodo de la multiplicacion para numeros fraccionarios-.-.-.-.-.-.-.-\n\n\n");
+    }
 
     free(count);
     free(parteEnteraOperacionAux);
     free(parteEnteraOperacion);
     free(parteFraccionariaOperacion);
     free(resultadoMultiplicacion);
+
 
 
     return 0;
@@ -134,29 +194,20 @@ int * cambioBaseFraccionarios(char* resultado,int* sizeResultado , char* numero,
 
     //OPERACIONES
 
-
+    if(*usa_v){
+        printf("\n/////////////////////////////////////////////////////////////////////////////////\n");
+        printf("\n Para pasar la parte fraccionaria del numero lo que haremos primero es pasar los digitos\n");
+        printf("\n del mismo a base 10 con el metodo de la division para numeros fraccionarios, \n");
+        printf("\n luego pasar el numero representado en base 10 a la base destino utilizando el \n");
+        printf("\n metodo de la multiplicacion para numeros fraccionarios.\n");
+        printf("\n/////////////////////////////////////////////////////////////////////////////////\n");
+    }
 
     deBaseOrigenADecimalFraccionario(numeroEnBaseDecimal, numero, sizeNumero, baseOrigen, usa_v);
 
-    #ifdef TEST_MODE
-        printf("\n -_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_ \n");
-        printf("\n RESULTADO deBaseOrigenADecimal: \n");
-        printf("%lf ... ", *(numeroEnBaseDecimal));
-        printf("\n -_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_ \n");
-        printf("\n");
-    #endif // TEST_MODE
 
     deBaseDecimalADestinoFraccionario(resultado, sizeResultado, numeroEnBaseDecimal, baseDestino, usa_v);
 
-     #ifdef TEST_MODE
-        printf("\n -_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_ \n");
-        printf("\n RESULTADO deBaseDecimalADestino: \n");
-        for(*i=0; *i<*sizeResultado; (*i)++){
-            printf("%c ... ", *(resultado+*i));
-        }
-        printf("\n -_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_ \n");
-        printf("\n");
-    #endif // TEST_MODE
 
     //LIBERACIÓN DE MEMORIA
     free(numeroEnBaseDecimal);
